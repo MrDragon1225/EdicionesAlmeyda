@@ -1,0 +1,93 @@
+:root {
+    --fuenteHeading: 'PT Sans', sans-serif;
+    --fuenteParrafos: 'Open Sans', sans-serif;
+    --primario: #5d4037;
+    --blanco: #ffffff;
+    --negro: #000000;
+    --naranja: #f0ad4e;
+    --fondoclaro: #fdf6e3;
+    --BotoColor: #7b1f1a;
+    --botonhover: #D4AF37;
+    --griss: #4A4A4A;
+}
+
+
+/* Estilos generales para la sección de contacto */
+.seccion-contact {
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+    padding: 20px; 
+    background-color: var(--fondoclaro); 
+}
+
+.titulo-contact {
+    
+    font-size: 2rem; 
+    color: var(--griss); 
+    margin-bottom: 10px; 
+}
+
+.divisor {
+    width: 500px; 
+    height: 2px; 
+    background-color: #4A4A4A; 
+    margin: 0 auto 30px auto; 
+}
+
+.info-contact {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 30px; 
+}
+
+.item-contact {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+.icon-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.item-contact img {
+    width: 100%;
+    height: auto;
+    max-width: 40px;
+}
+
+.contact-text h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.texto-contacto h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+.texto-contacto p {
+    margin: 5px 0 0 0;
+}
+
+@media (min-width: 768px) {
+    .item-contact {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+
+    .icon-contact {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,159 @@
+/* Estilos básicos */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Estructura principal */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px; /* Espacio entre las secciones */
+}
+
+#sidebar {
+    width: 20%;
+    padding: 15px;
+    background-color: #ddd;
+}
+
+#catalogo {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas grandes */
+    gap: 20px;
+}
+
+.producto {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.producto img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+/* Carrito */
+#carrito {
+    width: 20%;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    color: #333;
+}
+
+#lista-carrito {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+#lista-carrito li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+}
+
+#lista-carrito img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+#total {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Estilos de los inputs */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+/* Estilos para el botón */
+button {
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+/* Estilos responsivos para tablets */
+@media (max-width: 1024px) {
+    #sidebar, #catalogo, #carrito {
+        width: 100%; /* Ancho completo para que se apilen */
+        margin: 0;
+    }
+
+    #catalogo {
+        grid-template-columns: 1fr 1fr; /* 2 columnas en tablets */
+    }
+}
+
+/* Estilos responsivos para móviles */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column; /* Sección en una columna */
+    }
+
+    #catalogo {
+        grid-template-columns: 1fr; /* 1 columna en móviles */
+    }
+
+    /* Ajustes para el carrito en móviles */
+    #carrito {
+        order: 1; /* Colocar el carrito al final */
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #lista-carrito img {
+        width: 40px; /* Tamaño de la imagen en el carrito en móviles */
+    }
+
+    .producto img {
+        max-width: 100px;
+    }
+}
