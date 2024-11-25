@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo</title>
+    <style>
+        /* Estilos básicos */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #f4f4f4; }
+        select { padding: 5px; }
+        button { padding: 5px 10px; }
+    </style>
+    <script type="module">
+        import { fetchData } from './api.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const data = await fetchData('pedidos');
+            console.log(data); // Maneja los datos como desees
+        });
+    </script>
+</head>
+<body>
+    <h1>Panel Administrativo de Pedidos</h1>
+    <table id="tabla-pedidos">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Productos</th>
+                <th>Total</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+                <th>Direccion</th>
+                <th>Correo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los pedidos se insertarán aquí -->
+        </tbody>
+    </table>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

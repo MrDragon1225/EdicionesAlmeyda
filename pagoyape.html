@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pago.css">
+    <title>Método de Pago</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Método de Pago</h1>
+        <p>Para realizar su pago, escanee el siguiente código QR:</p>
+        <img src="img/yape_qr.png" alt="QR de Yape" class="qr-image">
+        <p>Incluya su nombre completo en el mensaje de pago.</p>
+        <button onclick="confirmarPago()">Confirmar Pago</button>
+    </div>
+
+    <script>
+        function confirmarPago() {
+            alert("Gracias por confiar en nosotros. A la brevedad, nuestro personal se comunicará con usted para confirmar su pedido y resolver cualquier duda.");
+            window.location.href = "index.html"; 
+        }
+    </script>
+</body>
+</html>
