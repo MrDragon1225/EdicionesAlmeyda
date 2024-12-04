@@ -1,0 +1,27 @@
+.auth-options {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    gap: 20px; /* Espaciado entre las imágenes */
+    margin-bottom: 0px;
+}
+
+.auth-link {
+    text-decoration: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.auth-img {
+    width: 40px; /* Tamaño de la imagen */
+    height: 40px;
+    object-fit: contain; /* Ajustar imagen al contenedor */
+    cursor: pointer;
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto al pasar el mouse */
+.auth-img:hover {
+    transform: scale(1.1); /* Ampliar ligeramente */
+    opacity: 0.9; /* Reducir la opacidad */
+}

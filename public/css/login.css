@@ -1,0 +1,30 @@
+ /* Fondo de pantalla */
+ body {
+    background: url('/public/img/libreria-b.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+/* Centrado de la card */
+.card {
+    background-color: #007bff;
+    color: white;
+    border-radius: 15px;
+}
+
+/* Personalización de los botones */
+.btn-primary {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-primary:hover {
+    background-color: #004085;
+    border-color: #003366;
+}
+
+/* Estilos de la alerta */
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}

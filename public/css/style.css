@@ -1,0 +1,598 @@
+:root {
+    --fuenteHeading: 'PT Sans', sans-serif;
+    --fuenteParrafos: 'Open Sans', sans-serif;
+    --primario: #5d4037;
+    --blanco: #ffffff;
+    --negro: #000000;
+    --naranja: #f0ad4e;
+    --fondoclaro: #fdf6e3;
+    --BotoColor: #7b1f1a;
+    --botonhover: #D4AF37;
+    --griss: #4A4A4A;
+}
+
+/* Configuración básica */
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 1.6rem;
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuenteParrafos);
+}
+
+/* Estilo del contenedor principal */
+.contenedor {
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Quitar subrayado de enlaces */
+a {
+    text-decoration: none;
+}
+
+/* Estilo de títulos */
+h1, h2, h3 {
+    font-family: var(--fuenteHeading);
+}
+
+h1 {
+    font-size: 4.8rem;
+}
+h2 {
+    font-size: 4rem;
+}
+h3 {
+    font-size: 3.2rem;
+}
+
+/* Estilo del header */
+header {
+    position: relative;
+    margin-top: 100px;
+    padding: 0;
+}
+
+/* Barra de navegación */
+.nav_bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--primario);
+    z-index: 10;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 0; /* Ajuste de padding superior e inferior si es necesario */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 50px;
+}
+
+/* Estilo del logo */
+.logo img {
+    height: 100px; 
+}
+
+/* Lista del menú de navegación */
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+}
+
+.nav_links li {
+    display: inline;
+    margin-top: 10px;
+}
+
+.nav_links a {
+    color: var(--blanco);
+    font-size: 1.8rem;
+}
+
+.nav_links a:hover {
+    color: var(--naranja);
+}
+
+/*Botones de inicio y cerrar sesion*/
+.login-icon {
+    margin-left: 10px; 
+}
+
+.icon-img {
+    width: 24px; 
+    height: 24px; 
+}
+
+.user-info {
+    display: none; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.welcome-message {
+    font-size: 1.6rem; 
+    color: white; 
+    font-weight: 600; 
+}
+
+.logout-icon {
+    width: 24px; 
+    height: 24px; 
+    cursor: pointer; 
+    transition: transform 0.2s ease-in-out; 
+}
+
+.logout-icon:hover {
+    transform: scale(1.1); 
+    opacity: 0.8; 
+}
+
+@media only screen and (max-width: 600px) {
+    .nav_links a {
+        font-size: 16px; 
+        margin: 0; 
+    }
+
+    .icon-img, .logout-icon {
+        width: 20px; 
+        height: 20px;
+    }
+
+    .welcome-message {
+        font-size: 12px; 
+    }
+
+    .nav {
+        justify-content: center; 
+        flex-direction: column;
+    }
+
+    .user-info {
+        justify-content: center; 
+        margin-bottom: 10px; 
+    }
+}
+.user-info img:hover {
+    opacity: 0.7; 
+}
+
+.user-info button {
+    margin-left: 10px; 
+    padding: 5px 10px; 
+    background-color: #f44336; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+
+.user-info button:hover {
+    background-color: #e53935; 
+}
+
+/* Contenedor del banner */
+.banner {
+    background-image: url('../img/banner.png'); /* Imagen de fondo del banner */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: var(--blanco);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.banner-content {
+    text-align: center;
+}
+
+/* Ajuste de texto del banner */
+.banner h1 {
+    font-size: 8rem;
+    margin: 0;
+}
+
+.banner p {
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); 
+    z-index: 1;
+}
+
+/*segunda seccion nosotros*/
+
+.nosotros {
+    text-align: center;
+    padding: 50px 0;
+    background-color: var(--fondoclaro); 
+}
+
+.contenedor-nosotros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.texto-nosotros {
+    background-color: var(--blanco);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+.texto-nosotros h2 {
+    font-family: var(--fuenteHeading);
+    color: var(--primario);
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.texto-nosotros p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.ver-mas {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: var(--BotoColor);
+    color: var(--blanco);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.6rem;
+    transition: background-color 0.3s;
+}
+
+.ver-mas:hover {
+    background-color: var(--botonhover);
+}
+
+.imagen-nosotros {
+    width: 45%;
+}
+
+.imagen-nosotros img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor-nosotros {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .texto-nosotros {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+    .imagen-nosotros {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+/*Tercera Seccion Novedades*/
+.novedades {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.novedades h2 {
+    font-size: 36px;
+    color: #3c2219;
+    margin-bottom: 40px;
+}
+
+.contenedor-categorias {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Tarjetas */
+.tarjeta {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+}
+
+.tarjeta h3 {
+    font-size: 24px;
+    color: #3c2219;
+    margin-bottom: 20px;
+}
+
+/* Contenido de la Tarjeta */
+.tarjeta-contenido {
+    padding: 20px;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.tarjeta h4 {
+    font-size: 20px;
+    color: #3c2219;
+    margin: 20px 0 10px;
+}
+
+.tarjeta p {
+    font-size: 14px;
+    color: #5a4a3c;
+    margin-bottom: 20px;
+}
+
+.tarjeta button {
+    background-color: #8b3e2f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tarjeta button:hover {
+    background-color: var(--botonhover);
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor-categorias {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tarjeta {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+/*Tienda*/
+.tienda {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.tienda h2 {
+    font-size: 36px;
+    color: #3c2219; /* Color de título */
+    margin-bottom: 40px;
+}
+
+/* Contenedor de Productos */
+.contenedor-productos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Permite el ajuste a nuevas líneas */
+    margin-bottom: 40px;
+}
+
+/* Producto */
+.producto {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+}
+
+.producto img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.producto h3 {
+    font-size: 18px;
+    color: #3c2219;
+    margin-bottom: 10px;
+}
+
+.producto p {
+    font-size: 16px;
+    color: #5a4a3c;
+    margin-bottom: 15px;
+}
+
+/* Botón de cada producto */
+.producto button {
+    background-color: var(--BotoColor);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.producto button:hover {
+    background-color: var(--botonhover);
+}
+
+/* Botón "Ver más" General */
+.ver-mas-general {
+    text-align: right;
+    margin-right: 50px;
+}
+
+.ver-mas-general button {
+    background-color: #8b3e2f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ver-mas-general button:hover {
+    background-color: var(--botonhover);
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor-productos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ver-mas-general {
+        margin-right: 0;
+        text-align: center;
+    }
+    
+}
+
+/* Footer */
+.footer {
+    position: flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 40px;
+    background-color: #f9f8f6; 
+    border-top: 1px solid #ccc; 
+}
+
+.footer-seccion {
+    margin: 10px;
+}
+
+.footer-seccion h4 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.footer-seccion p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.footer-logo {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+/* Información de Contacto */
+.footer-info {
+    max-width: 300px;
+}
+
+.footer-info h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.footer-contacto {
+    font-size: 14px;
+}
+
+.footer-contacto span {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.footer-contacto p {
+    margin: 5px 0;
+}
+
+/* Menú de Navegación */
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: var(--naranja); 
+}
+
+/* Redes Sociales */
+.redes-sociales {
+    text-align: center;
+}
+
+.social-icon {
+    width: 40px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ediciones Almeyda</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+<!-- Contenedor del nav con imagen de fondo -->
+        <div class="nav_bar">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="/">
+                        <img src="img/Logo Ediciones Almeyda.png" alt="Logo de la empresa" >
+                    </a> 
+                </div>
+                <ul class="nav_links">
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li><a href="/novedades">Novedades</a></li>
+                    <li><a href="/contacto">Contacto</a></li>
+                    <li><a href="/tienda">Tienda</a></li>
+                    <div class="auth-options">
+                        <% if (!user) { %>
+                            <!-- Mostrar Login y Registro -->
+                            <a href="/signin" class="auth-link">
+                                <img src="img/login.svg" alt="Login" class="auth-img">
+                            </a>
+                        <% } else { %>
+                            <!-- Mostrar Perfil y Cerrar Sesión -->
+                            <a href="/profile" class="auth-link">
+                                <img src="img/profile.svg" alt="Profile" class="auth-img">
+                            </a>
+                            <a href="/logout" class="auth-link">
+                                <img src="img/logout.svg" alt="Logout" class="auth-img">
+                            </a>
+                        <% } %>
+                    </div>                   
+                                      
+                </ul>
+
+                <div id="user-info" class="user-info">
+                    
+                </div>
+            </nav>
+        </div>
+
+<!-- Contenedor del banner -->
+        <div class="banner">
+            <div class="banner-content">
+                <h1>Ediciones Almeyda</h1>
+                <p>Proin odio nulla, venenatis nec lorem vitae, molestie dapibus sem.</p>
+            </div>
+        </div>
+    </header>
+
+<!-- Nosotros-->
+    <section class="nosotros">
+        <h2>Nosotros</h2>
+        <div class="contenedor-nosotros">
+            <div class="texto-nosotros">
+                <h2>¿Quiénes somos?</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et iaculis justo. 
+                    Aliquam dictum turpis eget facilisis faucibus. Fusce fermentum mauris id sapien posuere, 
+                    eu vulputate nibh vestibulum. Duis auctor ante sed sollicitudin molestie. Phasellus dapibus 
+                    sollicitudin mi, sit amet pharetra velit efficitur eu.
+                </p>
+                <p>
+                    In id risus eros. Maecenas consectetur urna at nisi viverra, id commodo urna imperdiet. 
+                    Pellentesque euismod ut quam non sodales. Vivamus at porta lorem.
+                </p>
+                <a href="/nosotros">
+                    <button class="ver-mas">Ver más</button>
+                </a>
+                
+            </div>
+            <div class="imagen-nosotros">
+                <img src="img/libros.jpg" alt="Ilustración de la sección nosotros">
+            </div>
+        </div>
+    </section>
+
+<!-- Novedades-->
+<section class="novedades">
+    <h2>Novedades</h2>
+    <div class="contenedor-categorias">
+        <!-- Tarjeta 1-->
+        <div class="tarjeta">
+            <h3>Libros Nuevos</h3>
+            <div class="tarjeta-contenido">
+                <img src="img/libros.jpg" alt="Libros Nuevos">
+                <h4>Libro1</h4>
+                <p>Praesent et augue ut libero commodo lacinia.</p>
+                <a href="/novedades">
+                    <button >Ver más</button>
+                </a>
+            </div>
+        </div>
+        <!-- Tarjeta 2-->
+        <div class="tarjeta">
+            <h3>Eventos</h3>
+            <div class="tarjeta-contenido">
+                <img src="img/libros.jpg" alt="Eventos">
+                <h4>Nombre</h4>
+                <p>Praesent et augue ut libero commodo lacinia.</p>
+                <a href="/novedades">
+                    <button >Ver más</button>
+                </a>
+                
+            </div>
+        </div>
+        <!-- Tarjeta 3-->
+        <div class="tarjeta">
+            <h3>Noticias</h3>
+            <div class="tarjeta-contenido">
+                <img src="img/libros.jpg" alt="Noticias">
+                <h4>Noticia</h4>
+                <p>Praesent et augue ut libero commodo lacinia.</p>
+                <a href="/novedades">
+                    <button >Ver más</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Tienda-->
+<section class="tienda">
+    <h2>Tienda</h2>
+    <div class="contenedor-productos">
+        <!-- Producto 1 -->
+        <div class="producto">
+            <img src="img/libros.jpg" alt="Libro 1">
+            <h3>Libro 1</h3>
+            <p>Precio</p>
+            <a href="">
+                <button>Ver más</button>
+            </a>
+        </div>
+        <!-- Producto 2 -->
+        <div class="producto">
+            <img src="img/libros.jpg" alt="Libro 2">
+            <h3>Libro 2</h3>
+            <p>Precio</p>
+            <a href="">
+                <button>Ver más</button>
+            </a>
+        </div>
+        <!-- Producto 3 -->
+        <div class="producto">
+            <img src="img/libros.jpg" alt="Libro 3">
+            <h3>Libro 3</h3>
+            <p>Precio</p>
+            <a href="">
+                <button>Ver más</button>
+            </a>
+        </div>
+        <!-- Producto 4 -->
+        <div class="producto">
+            <img src="img/libros.jpg" alt="Libro 4">
+            <h3>Libro 4</h3>
+            <p>Precio</p>
+            <a href="">
+                <button>Ver más</button>
+            </a>
+        </div>
+    </div>
+    <!-- Botón de "Ver más" general -->
+    <div class="ver-mas-general">
+        <a href="/tienda">
+                <button>Ver más</button>
+        </a>
+    </div>
+</section>
+
+<!--Footer-->
+<footer class="footer">
+    <!-- Logo e Información -->
+    <div class="footer-seccion logo-info">
+        <img src="img/Logo Ediciones Almeyda.png" alt="Ediciones Almeyda" class="footer-logo">
+        <div class="footer-info">
+            <h3>Ediciones Almeyda</h3>
+            <p>
+                Praesent et augue ut libero commodo lacinia. Sed eget mattis lectus. Vestibulum iaculis ipsum metus, 
+                id congue enim vehicula at. Suspendisse laoreet, nunc at euismod lacinia, risus nulla vulputate augue, 
+                a convallis neque erat et urna.
+            </p>
+            <div class="footer-contacto">
+                <p><span>&#9742;</span> +51 125 345 985</p>
+                <p><span>&#9993;</span> correo@gmail.com</p>
+                <p>RUC: 10218523931</p>
+            </div>
+        </div>
+    </div>
+    <!-- Menú de Navegación -->
+    <div class="footer-seccion menu">
+        <h4>Menu</h4>
+        <ul>
+            <li><a href="/nosotros">Nosotros</a></li>
+            <li><a href="/novedades">Novedades</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/tienda">Tienda</a></li>
+        </ul>
+    </div>
+    <!-- Redes Sociales -->
+    <div class="footer-seccion redes-sociales">
+        <h4>Síguenos en</h4>
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+          </svg></a>
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+          </svg></a>
+    </div>
+</footer>
+
+</body>
+</html>
