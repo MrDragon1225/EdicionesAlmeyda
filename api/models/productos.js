@@ -21,3 +21,5 @@ export const getProductById = async (id) => {
     }
     return await Producto.findById(id);
 };
+
+

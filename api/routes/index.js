@@ -2,10 +2,10 @@ import { Router } from 'express';
 const router = Router();
 import passport from 'passport';
 import User from '../models/user.js';
+import { mostrarIndex } from '../controllers/index.controller.js';
 
-router.get('/', (req, res, next) => {
-    res.render('index', { user: req.user || null });
-});
+
+router.get('/', mostrarIndex);
 
 router.get('/nosotros', (req, res, next) => {
     res.render('nosotros', { user: req.user || null });

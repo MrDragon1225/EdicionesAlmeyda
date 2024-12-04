@@ -134,47 +134,20 @@
 <section class="tienda">
     <h2>Tienda</h2>
     <div class="contenedor-productos">
-        <!-- Producto 1 -->
-        <div class="producto">
-            <img src="img/libros.jpg" alt="Libro 1">
-            <h3>Libro 1</h3>
-            <p>Precio</p>
-            <a href="">
-                <button>Ver más</button>
-            </a>
-        </div>
-        <!-- Producto 2 -->
-        <div class="producto">
-            <img src="img/libros.jpg" alt="Libro 2">
-            <h3>Libro 2</h3>
-            <p>Precio</p>
-            <a href="">
-                <button>Ver más</button>
-            </a>
-        </div>
-        <!-- Producto 3 -->
-        <div class="producto">
-            <img src="img/libros.jpg" alt="Libro 3">
-            <h3>Libro 3</h3>
-            <p>Precio</p>
-            <a href="">
-                <button>Ver más</button>
-            </a>
-        </div>
-        <!-- Producto 4 -->
-        <div class="producto">
-            <img src="img/libros.jpg" alt="Libro 4">
-            <h3>Libro 4</h3>
-            <p>Precio</p>
-            <a href="">
-                <button>Ver más</button>
-            </a>
-        </div>
+        <% libros.forEach(libro => { %>
+            <div class="producto">
+                <img src="<%= libro.imagen || 'img/default.jpg' %>" alt="<%= libro.nombre %>">
+                <h3><%= libro.nombre %></h3>
+                <p>Precio: S/ <%= libro.precio %></p>
+                <a href="/libro/<%= libro._id %>">
+                    <button>Ver más</button>
+                </a>
+            </div>
+        <% }) %>
     </div>
-    <!-- Botón de "Ver más" general -->
     <div class="ver-mas-general">
         <a href="/tienda">
-                <button>Ver más</button>
+            <button>Ver más</button>
         </a>
     </div>
 </section>
