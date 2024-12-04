@@ -1,0 +1,3 @@
+#ignorar documento
+.env
+/node_modules
