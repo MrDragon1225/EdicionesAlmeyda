@@ -1,6 +1,8 @@
 let total = 0;
 
-document.addEventListener("DOMContentLoaded", cargarProductos);
+document.addEventListener("DOMContentLoaded", function() {
+    cargarProductos();
+});
 
 function cargarProductos() {
     fetch("/productos")  // Asegúrate de que esta ruta esté correcta y accesible desde el frontend
@@ -13,8 +15,12 @@ function cargarProductos() {
         })
         .then(data => {
             const catalogo = document.getElementById("catalogo");
+            if (!catalogo) {
+                console.error("Elemento con id 'catalogo' no encontrado");
+                return;
+            }
             catalogo.innerHTML = "";  // Limpia el catálogo antes de agregar nuevos productos
-    
+     
             // Recorre la lista de productos y los agrega al catálogo
             data.forEach(producto => {
                 const productoDiv = document.createElement("div");
@@ -34,6 +40,7 @@ function cargarProductos() {
             alert("Hubo un error al cargar los productos. Inténtalo nuevamente más tarde.");
         });
 }
+
 
 
 function agregarAlCarrito(nombre, imagen, precio, id) {
@@ -128,7 +135,6 @@ async function pagar() {
         alert("Hubo un error al procesar tu orden. Intenta nuevamente.");
     }
 }
-
 
 
 

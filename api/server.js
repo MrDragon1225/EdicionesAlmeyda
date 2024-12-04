@@ -11,6 +11,7 @@ import passport from 'passport';
 import session from 'express-session'
 import flash from 'connect-flash';
 import auth from './passport/local-auth.js';
+import Producto from './models/productos.js';
 
 
 const __dirname = path.resolve();

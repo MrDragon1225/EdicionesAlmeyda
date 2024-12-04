@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= libro.nombre %></title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="nav_bar">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/img/Logo Ediciones Almeyda.png" alt="Logo de la empresa" >
+                    </a> 
+                </div>
+                <ul class="nav_links">
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li><a href="/novedades">Novedades</a></li>
+                    <li><a href="/contacto">Contacto</a></li>
+                    <li><a href="/tienda">Tienda</a></li>
+                    <div class="auth-options">
+                        <% if (!user) { %>
+                            <a href="/signin" class="auth-link">
+                                <img src="/img/login.svg" alt="Login" class="auth-img">
+                            </a>
+                        <% } else { %>
+                            <a href="/profile" class="auth-link">
+                                <img src="/img/profile.svg" alt="Profile" class="auth-img">
+                            </a>
+                            <a href="/logout" class="auth-link">
+                                <img src="/img/logout.svg" alt="Logout" class="auth-img">
+                            </a>
+                        <% } %>
+                    </div>                   
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="detalle-libro">
+            <section class="detalle-libro-container">
+                <section class="detalle-imagen">
+                    <img src="<%= libro.imagen || 'img/default.jpg' %>" alt="<%= libro.nombre %>">
+                </section>
+                <section class="detalle-info">
+                    <h2><%= libro.nombre %></h2>
+                    <p><strong>Precio:</strong> S/ <%= libro.precio %></p>
+                    <p><strong>Descripción:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem vel ex efficitur vehicula.</p>
+                    <a href="/tienda">
+                        <button class="boton-tienda">Volver a la tienda</button>
+                    </a>
+                </section>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-seccion logo-info">
+            <img src="/img/Logo Ediciones Almeyda.png" alt="Ediciones Almeyda" class="footer-logo">
+            <div class="footer-info">
+                <h3>Ediciones Almeyda</h3>
+                <p>
+                    Praesent et augue ut libero commodo lacinia. Sed eget mattis lectus. Vestibulum iaculis ipsum metus, 
+                    id congue enim vehicula at. Suspendisse laoreet, nunc at euismod lacinia, risus nulla vulputate augue, 
+                    a convallis neque erat et urna.
+                </p>
+                <div class="footer-contacto">
+                    <p><span>&#9742;</span> +51 125 345 985</p>
+                    <p><span>&#9993;</span> correo@gmail.com</p>
+                    <p>RUC: 10218523931</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-seccion menu">
+            <h4>Menu</h4>
+            <ul>
+                <li><a href="/nosotros">Nosotros</a></li>
+                <li><a href="/novedades">Novedades</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="/tienda">Tienda</a></li>
+            </ul>
+        </div>
+        <div class="footer-seccion redes-sociales">
+            <h4>Síguenos en</h4>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+              </svg></a>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+              </svg></a>
+        </div>
+    </footer>
+</body>
+</html>
