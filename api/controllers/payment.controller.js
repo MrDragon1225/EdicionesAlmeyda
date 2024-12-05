@@ -7,6 +7,7 @@ mercadopago.configure({
     access_token: "APP_USR-3081024811616420-120319-f0a1648308a3d6a547a32cd549981477-2136840526",
 });
 
+
 export const createOrder = async (req, res) => {
     if (!req.user) {
         return res.status(401).json({ error: "Usuario no autenticado" });
@@ -42,30 +43,31 @@ export const createOrder = async (req, res) => {
             return res.status(400).json({ error: "No se pudieron procesar productos válidos." });
         }
 
-        // Crear la preferencia en Mercado Pago
-        const preference = await mercadopago.preferences.create({
-            items: products,
-            back_urls: {
-                success: '/success',
-                failure: '/failure',
-                pending: '/pending',
-            },
-            notification_url: '/webhook',
-        });
-
         // Guardar la orden en la base de datos, incluyendo el userId
         const newOrder = new Order({
             userId: req.user.id,
             products: products,
-            status: 'pendiente', // Ajustar si es necesario según el modelo
-            totalAmount: totalAmount, // Añadir el totalAmount calculado
-            shippingAddress: req.user.direccion, // Suponiendo que tienes esta información en el modelo `User`
+            status: 'pendiente',
+            totalAmount: totalAmount, 
+            shippingAddress: req.user.direccion, 
             phone: req.user.telefono,
             email: req.user.email,
             createdAt: new Date(),
         });
 
-        await newOrder.save();
+        await newOrder.save();  // Guardar la orden en la base de datos primero
+
+        // Crear la preferencia en Mercado Pago con el external_reference
+        const preference = await mercadopago.preferences.create({
+            items: products,
+            back_urls: {
+                success: 'edicionesalmeyda-production.up.railway.app/success',
+                failure: 'edicionesalmeyda-production.up.railway.app/failure',
+                pending: 'edicionesalmeyda-production.up.railway.app/pending',
+            },
+            notification_url: 'edicionesalmeyda-production.up.railway.app/webhook',
+            external_reference: newOrder._id.toString(), // Ahora usamos el ID de la orden guardada
+        });
 
         return res.status(200).json({
             success: true,
@@ -77,19 +79,54 @@ export const createOrder = async (req, res) => {
     }
 };
 
-export const reciveWebhook = async (req, res) => {
-    const payment = req.query;
 
+// Mapeo de estados de MercadoPago a los valores de tu modelo
+const estadoMapeo = {
+    pending: 'pendiente',
+    approved: 'pagado',
+    in_process: 'en proceso',
+    rejected: 'fallido',
+    cancelled: 'cancelado',
+    refunded: 'reembolsado'
+};
+
+// Recibe el webhook y actualiza la orden
+export const reciveWebhook = async (req, res) => {
     try {
-        if (payment.type === 'payment') {
-            const data = await mercadopago.payment.findById(payment['data.id']);
-            console.log(data);
-            // Almacenar en la base de datos si es necesario
+        console.log('Webhook recibido:', JSON.stringify(req.body, null, 2));
+
+        const paymentData = req.body;
+
+        if (!paymentData || paymentData.type !== 'payment') {
+            console.error('Evento no relacionado con pagos:', paymentData);
+            return res.status(200).send('Evento ignorado');
         }
 
-        res.sendStatus(204);
+        const paymentId = paymentData.data.id;
+        const payment = await mercadopago.payment.findById(paymentId);
+        const { external_reference, status } = payment.body;
+
+        const order = await Order.findById(external_reference);
+        if (!order) {
+            console.error('Orden no encontrada para external_reference:', external_reference);
+            return res.status(404).send('Orden no encontrada');
+        }
+
+        const estadoTraducido = estadoMapeo[status];
+        if (!estadoTraducido) {
+            console.error('Estado no válido recibido:', status);
+            return res.status(400).send('Estado no válido');
+        }
+
+        order.status = estadoTraducido;
+        await order.save();
+
+        console.log('Orden actualizada correctamente:', order);
+        res.status(200).send('OK');
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({ error: error.message });
+        console.error('Error procesando webhook:', error);
+        res.status(500).send('Error interno');
     }
 };
+
+

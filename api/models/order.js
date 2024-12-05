@@ -11,7 +11,7 @@ const orderSchema = new mongoose.Schema({
     totalAmount: { type: Number, required: true },
     status: {
         type: String,
-        enum: ['pendiente', 'pagado', 'fallido'], // Asegúrate de que 'pendiente' es un valor permitido
+        enum: ['pendiente', 'pagado', 'fallido', 'reembolsado', 'fallido','en proceso', 'cancelado'], 
         default: 'pendiente',
     },
     shippingAddress: String,
