@@ -39,8 +39,4 @@ function loadOrderHistory() {
       .catch(err => console.error(err));
   }
   
-  
-  
-  // Llamada a la función para cargar el historial de órdenes al cargar la página
   loadOrderHistory();
-  

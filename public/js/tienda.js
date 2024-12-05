@@ -5,9 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function cargarProductos() {
-    fetch("/productos")  // Asegúrate de que esta ruta esté correcta y accesible desde el frontend
+    fetch("/productos")
         .then(response => {
-            // Verifica si la respuesta fue exitosa
             if (!response.ok) {
                 throw new Error("Error al cargar los productos");
             }
@@ -19,8 +18,8 @@ function cargarProductos() {
                 console.error("Elemento con id 'catalogo' no encontrado");
                 return;
             }
-            catalogo.innerHTML = "";  // Limpia el catálogo antes de agregar nuevos productos
-     
+            catalogo.innerHTML = ""; // Limpia el catálogo antes de agregar nuevos productos
+
             // Recorre la lista de productos y los agrega al catálogo
             data.forEach(producto => {
                 const productoDiv = document.createElement("div");
@@ -30,7 +29,11 @@ function cargarProductos() {
                     <h3>${producto.nombre}</h3>
                     <p>${producto.descripcion}</p>
                     <p>Precio: S/${producto.precio}</p>
-                    <button onclick="agregarAlCarrito('${producto.nombre}', '${producto.imagen}', ${producto.precio}, '${producto._id}')">Agregar al carrito</button>
+                    <div class="botones-container">
+                        <button class="btn-agregar-carrito" onclick="agregarAlCarrito('${producto.nombre}', '${producto.imagen}', ${producto.precio}, '${producto._id}')"><svg xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 24 24" fill="none" stroke="currentColor"  strokelinecap="round" strokelinejoin="round" width={24} height={24}  strokeWidth={2}> <path d="M4 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path> <path d="M12.5 17h-6.5v-14h-2"></path> <path d="M6 5l14 1l-.86 6.017m-2.64 .983h-10.5"></path> <path d="M16 19h6"></path> <path d="M19 16v6"></path> </svg> </button>
+                        <button class="btn-ver-mas" onclick="verMas('${producto._id}')">Ver más</button>
+                        <button class="btn-agregar-deseos" onclick="agregarAListaDeseos('${producto.nombre}', '${producto.imagen}', ${producto.precio}, '${producto._id}')"><svg xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 24 24" fill="none" stroke="currentColor"  strokelinecap="round" strokelinejoin="round" width={24} height={24}  strokeWidth={2}> <path d="M19 8h-14"></path> <path d="M5 12h9"></path> <path d="M11 16h-6"></path> <path d="M15 16h6"></path> <path d="M18 13v6"></path> </svg> </button>
+                    </div>
                 `;
                 catalogo.appendChild(productoDiv);
             });
@@ -41,7 +44,9 @@ function cargarProductos() {
         });
 }
 
-
+function verMas(id) {
+    window.location.href = `/libro/${id}`; 
+}
 
 function agregarAlCarrito(nombre, imagen, precio, id) {
     const listaCarrito = document.getElementById("lista-carrito");
@@ -73,8 +78,6 @@ function agregarAlCarrito(nombre, imagen, precio, id) {
     total += precio;
     actualizarTotal();
 }
-
-
 
 function actualizarTotal() {
     document.getElementById("total").textContent = `Total a pagar: S/${total}`;
