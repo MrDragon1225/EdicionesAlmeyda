@@ -79,6 +79,54 @@
     margin: 5px 0 0 0;
 }
 
+/* styles.css */
+
+.formulario-contacto {
+    padding: 20px;
+    background-color: #f4f4f4;
+    margin-top: 20px;
+}
+
+.formulario-contacto h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 2rem;
+    margin-top: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #4cae4c;
+}
+
+
 @media (min-width: 768px) {
     .item-contact {
         flex-direction: column; 

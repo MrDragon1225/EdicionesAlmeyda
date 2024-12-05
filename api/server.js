@@ -59,8 +59,6 @@ app.use(paymentRoutes);
 app.use(productoRoutes);
 app.use('/', indexRoutes);
 
-
-
 // Conexión a MongoDB
 connect('mongodb+srv://jose-new:WPXAbwRWYCEUZKUJ@cluster0.2jkla.mongodb.net/edicionesalmeyda', {
 }).then(() => console.log("Conectado a MongoDB"))
