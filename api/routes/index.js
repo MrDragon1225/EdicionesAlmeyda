@@ -3,7 +3,8 @@ const router = Router();
 import passport from 'passport';
 import User from '../models/user.js';
 import { mostrarIndex } from '../controllers/index.controller.js';
-
+import Order from '../models/order.js';
+import Product from '../models/productos.js';
 
 router.get('/', mostrarIndex);
 
@@ -80,6 +81,28 @@ router.post('/update-profile', async (req, res) => {
         console.error('Error al actualizar el perfil:', error);
         req.flash('errorPerfilMessage', 'Hubo un problema al actualizar el perfil.');
         res.redirect('/profile');
+    }
+});
+
+router.get('/orders', async (req, res) => {
+    // Obtén el usuario desde req.user o app.locals.user
+    const user = req.user || req.app.locals.user;
+
+    if (!user || !user._id) {
+        return res.status(401).json({ message: 'No autorizado, usuario no autenticado.' });
+    }
+
+    try {
+        const orders = await Order.find({ userId: user._id }).populate('products.productId');
+
+        if (!orders || orders.length === 0) {
+            return res.status(404).json({ message: 'No se encontraron órdenes para este usuario.' });
+        }
+
+        res.json(orders);
+    } catch (err) {
+        console.error('Error obteniendo órdenes:', err.message);
+        res.status(500).json({ message: 'Error al obtener las órdenes.', error: err.message });
     }
 });
 
