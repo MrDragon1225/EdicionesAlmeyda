@@ -5,9 +5,17 @@ import { createOrder, reciveWebhook } from '../controllers/payment.controller.js
 
 router.post('/create-order', express.json(), createOrder);
 
-router.get('/success', (req,res) => res.send('success'));
-router.get('/failure', (req,res) => res.send('failure'));
-router.get('/pending', (req,res) => res.send('pending'));
+router.get('/success', (req, res) => {
+    res.redirect('/'); 
+  });
+  
+  router.get('/failure', (req, res) => {
+    res.redirect('/'); 
+  });
+  
+  router.get('/pending', (req, res) => {
+    res.redirect('/');
+  });
 
 router.post('/webhook', reciveWebhook);
 

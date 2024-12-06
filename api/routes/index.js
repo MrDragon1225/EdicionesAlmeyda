@@ -3,7 +3,9 @@ const router = Router();
 import passport from 'passport';
 import User from '../models/user.js';
 import { mostrarIndex } from '../controllers/index.controller.js';
-
+import Order from '../models/order.js';
+import Contact from '../models/contacto.js';
+import Producto from '../models/productos.js';
 
 router.get('/', mostrarIndex);
 
@@ -17,7 +19,38 @@ router.get('/contacto', (req, res, next) => {
 
 router.get('/novedades', (req, res, next) => {
     res.render('novedades', { user: req.user || null });
-}), 
+}),
+
+router.get('/dashboard', async (req, res) => {
+    try {
+        const orders = await Order.find().populate('products.productId');
+        const products = await Producto.find();
+        const contacts = await Contact.find();
+        res.render('dashboard', { orders, products, contacts });
+    } catch (err) {
+        res.status(500).send('Error al cargar el dashboard');
+    }
+});
+
+router.post('/dashboard/products', async (req, res) => {
+    try {
+        const { nombre, descripcion, categoria, precio, imagen } = req.body;
+        const producto = new Producto({ nombre, descripcion, categoria, precio, imagen });
+        await producto.save();
+        res.redirect('/dashboard');
+    } catch (err) {
+        res.status(500).send('Error al agregar el producto');
+    }
+});
+
+router.delete('/dashboard/products/:id', async (req, res) => {
+    try {
+        await Producto.findByIdAndDelete(req.params.id);
+        res.redirect('/dashboard');
+    } catch (err) {
+        res.status(500).send('Error al eliminar el producto');
+    }
+});
 
 router.get('/signup', (req, res,next) =>{
     res.render('signup');
@@ -80,6 +113,56 @@ router.post('/update-profile', async (req, res) => {
         console.error('Error al actualizar el perfil:', error);
         req.flash('errorPerfilMessage', 'Hubo un problema al actualizar el perfil.');
         res.redirect('/profile');
+    }
+});
+
+router.post('/enviar-contacto', async (req, res) => {
+    const { name, email, section, other_message, message } = req.body;
+
+    if (!name || !email || !message || !section) {
+        return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
+    }
+
+    try {
+        const newContact = new Contact({
+            name,
+            email,
+            section,  // Agregamos la sección seleccionada
+            other_message: section === 'otros' ? other_message : null,  // Guardamos el mensaje solo si es "Otros"
+            message,
+        });
+
+        await newContact.save(); // Guardar el contacto en la base de datos
+
+        // Aquí podrías enviar un correo al staff notificando que se ha recibido un mensaje
+        // Por ejemplo, usando un servicio de email como nodemailer
+
+        res.status(200).json({ message: 'Mensaje enviado correctamente.' });
+    } catch (error) {
+        console.error("Error al guardar el contacto:", error);
+        res.status(500).json({ error: 'Hubo un error al enviar el mensaje. Intenta nuevamente.' });
+    }
+});
+
+router.get('/orders', async (req, res) => {
+    // Obtén el usuario desde req.user o app.locals.user
+    const user = req.user || req.app.locals.user;
+
+    if (!user || !user._id) {
+        return res.status(401).json({ message: 'No autorizado, usuario no autenticado.' });
+    }
+
+    try {
+        const orders = await Order.find({ userId: user._id }).populate('products.productId');
+
+        if (!orders || orders.length === 0) {
+            return res.status(404).json({ message: 'No se encontraron órdenes para este usuario.' });
+        }
+
+        res.json(orders);
+    } catch (err) {
+        console.error('Error obteniendo órdenes:', err.message);
+        res.status(500).json({ message: 'Error al obtener las órdenes.', error: err.message });
     }
 });
 

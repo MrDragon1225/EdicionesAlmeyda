@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <nav>
+            <a href="#orders">Órdenes</a>
+            <a href="#products">Productos</a>
+            <a href="#contacts">Contactos</a>
+        </nav>
+    </header>
+
+    <section id="orders">
+        <h2>Órdenes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Productos</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                    <tr>
+                        <td><%= order._id %></td>
+                        <td><%= order.userId %></td>
+                        <td>
+                            <ul>
+                                <% order.products.forEach(product => { %>
+                                    <li><%= product.title %> (x<%= product.quantity %>)</li>
+                                <% }) %>
+                            </ul>
+                        </td>
+                        <td>S/ <%= order.totalAmount %></td>
+                        <td><%= order.status %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="products">
+        <h2>Productos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.nombre %></td>
+                        <td><%= product.descripcion %></td>
+                        <td><%= product.categoria %></td>
+                        <td>S/ <%= product.precio %></td>
+                        <td>
+                            <form action="/dashboard/products/<%= product._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <h3>Añadir producto</h3>
+        <form action="/dashboard/products" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="descripcion" placeholder="Descripción">
+            <input type="text" name="categoria" placeholder="Categoría" required>
+            <input type="number" name="precio" placeholder="Precio" required>
+            <input type="text" name="imagen" placeholder="URL de la imagen">
+            <button type="submit">Añadir</button>
+        </form>
+    </section>
+
+    <section id="contacts">
+        <h2>Contactos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Mensaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% contacts.forEach(contact => { %>
+                    <tr>
+                        <td><%= contact.name %></td>
+                        <td><%= contact.email %></td>
+                        <td><%= contact.message %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

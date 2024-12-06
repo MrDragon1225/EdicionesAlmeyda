@@ -120,6 +120,53 @@ button:hover {
     background-color: #4cae4c;
 }
 
+/* Contenedor del producto */
+.producto {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Contenedor de los botones */
+.botones-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espaciado horizontal entre botones */
+}
+
+/* Estilos para los botones */
+.botones-container button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Diferentes colores para los botones */
+.btn-agregar-carrito {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.btn-ver-mas {
+    background-color: #2196F3; /* Azul */
+    color: white;
+}
+
+.btn-agregar-deseos {
+    background-color: #FF9800; /* Naranja */
+    color: white;
+}
+
+/* Efecto hover */
+.botones-container button:hover {
+    opacity: 0.9;
+}
+
 /* Estilos responsivos para tablets */
 @media (max-width: 1024px) {
     #sidebar, #catalogo, #carrito {
