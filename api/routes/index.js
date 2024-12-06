@@ -5,7 +5,7 @@ import User from '../models/user.js';
 import { mostrarIndex } from '../controllers/index.controller.js';
 import Order from '../models/order.js';
 import Contact from '../models/contacto.js';
-import Product from '../models/productos.js';
+import Producto from '../models/productos.js';
 
 router.get('/', mostrarIndex);
 
@@ -19,7 +19,38 @@ router.get('/contacto', (req, res, next) => {
 
 router.get('/novedades', (req, res, next) => {
     res.render('novedades', { user: req.user || null });
-}), 
+}),
+
+router.get('/dashboard', async (req, res) => {
+    try {
+        const orders = await Order.find().populate('products.productId');
+        const products = await Producto.find();
+        const contacts = await Contact.find();
+        res.render('dashboard', { orders, products, contacts });
+    } catch (err) {
+        res.status(500).send('Error al cargar el dashboard');
+    }
+});
+
+router.post('/dashboard/products', async (req, res) => {
+    try {
+        const { nombre, descripcion, categoria, precio, imagen } = req.body;
+        const producto = new Producto({ nombre, descripcion, categoria, precio, imagen });
+        await producto.save();
+        res.redirect('/dashboard');
+    } catch (err) {
+        res.status(500).send('Error al agregar el producto');
+    }
+});
+
+router.delete('/dashboard/products/:id', async (req, res) => {
+    try {
+        await Producto.findByIdAndDelete(req.params.id);
+        res.redirect('/dashboard');
+    } catch (err) {
+        res.status(500).send('Error al eliminar el producto');
+    }
+});
 
 router.get('/signup', (req, res,next) =>{
     res.render('signup');
